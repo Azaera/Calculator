@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button multiplication;
 	private Button dot;
 	private Button equals;
+	private Button clear;
 	private TextView result;
 	
 	@Override
@@ -46,6 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		multiplication = (Button) findViewById(R.id.multiplication);
 		dot = (Button) findViewById(R.id.dot);
 		equals = (Button) findViewById(R.id.equals);
+		clear = (Button) findViewById(R.id.clear);
 		result = (TextView) findViewById(R.id.textView1);
 		
 		button0.setOnClickListener(this);
@@ -64,6 +66,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		divider.setOnClickListener(this);
 		dot.setOnClickListener(this);
 		equals.setOnClickListener(this);
+		clear.setOnClickListener(this);
 	}
 
 	@Override
@@ -75,36 +78,61 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		
+		String number = result.getText().toString();
+		
 		switch (v.getId()) {
 		case R.id.button1:
-			result.setText("1");
+			number += "1";
+			result.setText(number);
 		break;
 		case R.id.button2:
-			result.setText("2");
+			number += "2";
+			result.setText(number);
 		break;
 		case R.id.button3:
-			result.setText("3");
+			number += "3";
+			result.setText(number);
 		break;
 		case R.id.button4:
-			result.setText("4");
+			number += "4";
+			result.setText(number);
 		break;
 		case R.id.button5:
-			result.setText("5");
+			number += "5";
+			result.setText(number);
 		break;
 		case R.id.button6:
-			result.setText("6");
+			number += "6";
+			result.setText(number);
 		break;
 		case R.id.button7:
-			result.setText("7");
+			number += "7";
+			result.setText(number);
 		break;
 		case R.id.button8:
-			result.setText("8");
+			number += "8";
+			result.setText(number);
 		break;
 		case R.id.button9:
-			result.setText("9");
+			number += "9";
+			result.setText(number);
 		break;
 		case R.id.button0:
-			result.setText("0");
+			number += "0";
+			result.setText(number);
+		break;
+		case R.id.plus:
+		break;
+		case R.id.minus:
+		break;
+		case R.id.divider:
+		break;
+		case R.id.multiplication:
+		break;
+		case R.id.clear:
+			number = "";
+			result.setText(number);
 		break;
 		}
 	}
