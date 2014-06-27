@@ -1,3 +1,11 @@
+/* 
+Author: Björn Kristensson Alfsson
+Version: 1.2
+Date: 2014-06-27 
+Description: Simple android calculator. Built for learning purposes. Need a lot of work to make smaller methods.
+Just finished a basic addition calculator for now. Going to change around to add minus, multiplication and dividing later.
+*/
+
 package com.example.calculator;
 
 import android.widget.*;
@@ -25,6 +33,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button equals;
 	private Button clear;
 	private TextView result;
+	private TextView firstNumber;
+	private TextView secondNumber;
+	private TextView thirdNumber;
+	private int number1 = 0;
+	private int number2 = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		equals = (Button) findViewById(R.id.equals);
 		clear = (Button) findViewById(R.id.clear);
 		result = (TextView) findViewById(R.id.textView1);
+		firstNumber = (TextView) findViewById(R.id.number1);
+		secondNumber = (TextView) findViewById(R.id.number2);
+		thirdNumber = (TextView) findViewById(R.id.number3);
 		
 		button0.setOnClickListener(this);
 		button1.setOnClickListener(this);
@@ -80,6 +96,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		
 		String number = result.getText().toString();
+		int calculatedResult;
 		
 		switch (v.getId()) {
 		case R.id.button1:
@@ -122,14 +139,33 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			number += "0";
 			result.setText(number);
 		break;
+		
 		case R.id.plus:
+				number1 = Integer.parseInt(number);
+			number = "";
+			result.setText(number);
 		break;
+		
 		case R.id.minus:
 		break;
+		
 		case R.id.divider:
 		break;
+		
 		case R.id.multiplication:
 		break;
+		
+		case R.id.equals:
+			number2 = Integer.parseInt(number);
+			calculatedResult = number1 + number2;
+			//Keep until all mathemathic algorithms is solved.
+			firstNumber.setText(Integer.toString(number1));
+			secondNumber.setText(Integer.toString(number2));
+			thirdNumber.setText(Integer.toString(calculatedResult));
+			//Delete until here when finished
+			result.setText(Integer.toString(calculatedResult));
+		break;
+		
 		case R.id.clear:
 			number = "";
 			result.setText(number);
