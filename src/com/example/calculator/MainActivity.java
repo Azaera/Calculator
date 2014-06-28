@@ -1,9 +1,12 @@
 /* 
 Author: Björn Kristensson Alfsson
 Version: 1.2
-Date: 2014-06-27 
+Date: 2014-06-28 
 Description: Simple android calculator. Built for learning purposes. Need a lot of work to make smaller methods.
-Just finished a basic addition calculator for now. Going to change around to add minus, multiplication and dividing later.
+Finished the simple calculations. not possible to use more then one operator.
+
+Thought to add:
+Textview with inputted algorithm to be calculated when finished.
 */
 
 package com.example.calculator;
@@ -33,11 +36,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button equals;
 	private Button clear;
 	private TextView result;
-	private TextView firstNumber;
-	private TextView secondNumber;
-	private TextView thirdNumber;
-	private int number1 = 0;
-	private int number2 = 0;
+	private float number1 = 0;
+	private float number2 = 0;
+	private int mathematicOperator = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +63,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		equals = (Button) findViewById(R.id.equals);
 		clear = (Button) findViewById(R.id.clear);
 		result = (TextView) findViewById(R.id.textView1);
-		firstNumber = (TextView) findViewById(R.id.number1);
-		secondNumber = (TextView) findViewById(R.id.number2);
-		thirdNumber = (TextView) findViewById(R.id.number3);
 		
 		button0.setOnClickListener(this);
 		button1.setOnClickListener(this);
@@ -96,7 +94,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	public void onClick(View v) {
 		
 		String number = result.getText().toString();
-		int calculatedResult;
+		float calculatedResult = 0;
 		
 		switch (v.getId()) {
 		case R.id.button1:
@@ -141,33 +139,63 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		break;
 		
 		case R.id.plus:
-				number1 = Integer.parseInt(number);
+			number1 = Float.parseFloat(number);
+			mathematicOperator = 1;
 			number = "";
 			result.setText(number);
 		break;
 		
 		case R.id.minus:
+			number1 = Float.parseFloat(number);
+			mathematicOperator = 2;
+			number = "";
+			result.setText(number);
 		break;
 		
 		case R.id.divider:
+			number1 = Float.parseFloat(number);
+			mathematicOperator = 4;
+			number = "";
+			result.setText(number);
 		break;
 		
 		case R.id.multiplication:
+			number1 = Float.parseFloat(number);
+			mathematicOperator = 3;
+			number = "";
+			result.setText(number);
 		break;
 		
 		case R.id.equals:
-			number2 = Integer.parseInt(number);
-			calculatedResult = number1 + number2;
-			//Keep until all mathemathic algorithms is solved.
-			firstNumber.setText(Integer.toString(number1));
-			secondNumber.setText(Integer.toString(number2));
-			thirdNumber.setText(Integer.toString(calculatedResult));
-			//Delete until here when finished
-			result.setText(Integer.toString(calculatedResult));
+			number2 = Float.parseFloat(number);
+			if ( mathematicOperator == 1)
+			{
+				calculatedResult = number1 + number2;
+			}
+			else if (mathematicOperator == 2 )
+			{
+				calculatedResult = number1 - number2;
+			}
+			
+			else if (mathematicOperator == 3 )
+			{
+				calculatedResult = number1 * number2;
+			}	
+			else
+			{
+				calculatedResult = number1 / number2;
+			}
+			
+			result.setText(Float.toString(calculatedResult));
 		break;
 		
 		case R.id.clear:
 			number = "";
+			result.setText(number);
+		break;
+		
+		case R.id.dot:
+			number += ".";
 			result.setText(number);
 		break;
 		}
