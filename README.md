@@ -11,6 +11,10 @@ Adding new functions, like parentheses.
 
 #VERSIONUPDATE:
 
+version 1.3
+
+Added a popup window, mainly for learning purposes
+
 version 1.2
 
 All operators work. Basic calculations. No nested algorithms is possible yet.
