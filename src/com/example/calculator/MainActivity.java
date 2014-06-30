@@ -11,10 +11,13 @@ Textview with inputted algorithm to be calculated when finished.
 
 package com.example.calculator;
 
-import android.widget.*;
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.*;
+import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 	
@@ -35,10 +38,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button dot;
 	private Button equals;
 	private Button clear;
+	private Button about;
+	private Button btnClosePopup;
 	private TextView result;
 	private float number1 = 0;
 	private float number2 = 0;
 	private int mathematicOperator = 0;
+	private PopupWindow popup;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		equals = (Button) findViewById(R.id.equals);
 		clear = (Button) findViewById(R.id.clear);
 		result = (TextView) findViewById(R.id.textView1);
+		about = (Button) findViewById(R.id.about);
 		
 		button0.setOnClickListener(this);
 		button1.setOnClickListener(this);
@@ -81,6 +88,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		dot.setOnClickListener(this);
 		equals.setOnClickListener(this);
 		clear.setOnClickListener(this);
+		about.setOnClickListener(this);
 	}
 
 	@Override
@@ -137,7 +145,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
 			number += "0";
 			result.setText(number);
 		break;
-		
+		case R.id.about:
+			aboutThisApplication();
+		break;
 		case R.id.plus:
 			number1 = Float.parseFloat(number);
 			mathematicOperator = 1;
@@ -200,4 +210,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		break;
 		}
 	}
+
+	//popup window
+	private void aboutThisApplication() {
+		Resources res= getResources();
+		int color = res.getColor(R.color.red);
+		
+		try 
+		{
+			LayoutInflater inflater = ( LayoutInflater ) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			View layout = inflater.inflate(R.layout.about_this_application, (ViewGroup) findViewById(R.id.popup_element));
+			popup = new PopupWindow(layout, 300,300, true);
+			popup.showAtLocation(layout, Gravity.CENTER, 0, 0);
+			
+			btnClosePopup = (Button)layout.findViewById(R.id.back);
+			btnClosePopup.setOnClickListener(cancel_button_click_listener);	
+		} 
+		
+		catch ( Exception e )
+		
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private OnClickListener cancel_button_click_listener = new OnClickListener() {
+		
+		public void onClick(View y) 
+		{
+			popup.dismiss();
+		}
+	};
 }

@@ -180,5 +180,13 @@ Textview with inputted algorithm to be calculated when finished.
             android:text="=" />
     </LinearLayout>
 
+        <Button
+            android:id="@+id/about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/linearLayout5"
+            android:layout_below="@+id/linearLayout5"
+            android:layout_marginTop="22dp"
+            android:text="About" />
 
 </RelativeLayout>
