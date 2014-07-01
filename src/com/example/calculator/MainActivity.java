@@ -2,6 +2,7 @@
 Author: Björn Kristensson Alfsson
 Version: 1.2
 Date: 2014-06-28 
+Last updated: 2014-06-30
 Description: Simple android calculator. Built for learning purposes. Need a lot of work to make smaller methods.
 Finished the simple calculations. not possible to use more then one operator.
 
@@ -41,6 +42,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	private Button about;
 	private Button btnClosePopup;
 	private TextView result;
+	private TextView currentAlgorithm;
 	private float number1 = 0;
 	private float number2 = 0;
 	private int mathematicOperator = 0;
@@ -69,6 +71,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		equals = (Button) findViewById(R.id.equals);
 		clear = (Button) findViewById(R.id.clear);
 		result = (TextView) findViewById(R.id.textView1);
+		currentAlgorithm = (TextView) findViewById(R.id.currentAlgorithm);
 		about = (Button) findViewById(R.id.about);
 		
 		button0.setOnClickListener(this);
@@ -101,79 +104,125 @@ public class MainActivity extends Activity implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
+		/*
+		 * String number is for the calculation to take place
+		 * String current is for the entire algorithm pressed in. 
+		 */
+		
 		String number = result.getText().toString();
+		String current = currentAlgorithm.getText().toString();
 		float calculatedResult = 0;
 		
 		switch (v.getId()) {
+		
 		case R.id.button1:
 			number += "1";
+			current += "1";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button2:
 			number += "2";
+			current += "2";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button3:
 			number += "3";
+			current += "3";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button4:
 			number += "4";
+			current += "4";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button5:
 			number += "5";
+			current += "5";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button6:
 			number += "6";
+			current += "6";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button7:
 			number += "7";
+			current += "7";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button8:
 			number += "8";
+			current += "8";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button9:
 			number += "9";
+			current += "9";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.button0:
 			number += "0";
+			current += "0";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
+		
 		case R.id.about:
 			aboutThisApplication();
 		break;
+		
 		case R.id.plus:
 			number1 = Float.parseFloat(number);
 			mathematicOperator = 1;
 			number = "";
+			current += " + ";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
 		
 		case R.id.minus:
 			number1 = Float.parseFloat(number);
 			mathematicOperator = 2;
 			number = "";
+			current += " - ";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
 		
 		case R.id.divider:
 			number1 = Float.parseFloat(number);
 			mathematicOperator = 4;
 			number = "";
+			current += " / ";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
 		
 		case R.id.multiplication:
 			number1 = Float.parseFloat(number);
 			mathematicOperator = 3;
 			number = "";
+			current += " * ";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
 		
 		case R.id.equals:
@@ -202,16 +251,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		case R.id.clear:
 			number = "";
 			result.setText(number);
+			currentAlgorithm.setText(number);
 		break;
 		
 		case R.id.dot:
 			number += ".";
+			current += ".";
 			result.setText(number);
+			currentAlgorithm.setText(current);
 		break;
 		}
 	}
 
-	//popup window
+	//popup window. Maybe will be in it's own class file for future updates
 	private void aboutThisApplication() {
 		Resources res= getResources();
 		int color = res.getColor(R.color.red);
