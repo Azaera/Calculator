@@ -107,6 +107,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 		/*
 		 * String number is for the calculation to take place
 		 * String current is for the entire algorithm pressed in. 
+		 * Ideas: Removing number and using current for inputting algorithm, and then calculate when equals is pressed. 
 		 */
 		
 		String number = result.getText().toString();
