@@ -7,7 +7,8 @@ Description: Simple android calculator. Built for learning purposes. Need a lot 
 Finished the simple calculations. not possible to use more then one operator.
 
 Thought to add:
-Textview with inputted algorithm to be calculated when finished.
+Textview for current evaluation is added.
+Going to add more functions, like parenthesis
 */
 
 package com.example.calculator;
